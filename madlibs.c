@@ -6,6 +6,8 @@
 #include <stdio.h>
 #include <stdbool.h>
 
+//#define FILE_NAME “madlib1.txt”
+//#define FILE_NAME “madlib2.txt”
 #define MAX_LINES 150
 #define MAX_LENGTH 120
 
