@@ -9,6 +9,7 @@
 #define MAX_LINES 150
 #define MAX_LENGTH 120
 
+//function prototypes
 void readFileContent(char *filename, char content[MAX_LINES][MAX_LENGTH], int *lineCount);
 void userInput(char *message, char *inputStorage);
 void createMadlib(char content[MAX_LINES][MAX_LENGTH], int lineCount, char result[MAX_LINES][MAX_LENGTH]);
