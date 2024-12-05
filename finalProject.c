@@ -26,7 +26,7 @@ int main(){
 	//there is a workaround we could do).
 	
 	//second function call
-		
+	
 	fclose(fpt);
 	return 0;
 }
