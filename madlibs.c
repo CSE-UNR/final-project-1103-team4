@@ -18,23 +18,16 @@ void createMadlib(char content[MAX_LINES][MAX_LENGTH], int lineCount, char resul
 void displayResult(char result[MAX_LINES][MAX_LENGTH], int lineCount);
 void copy(char *goal, char *source);
 
-int main() {
-    char filename[MAX_LENGTH];
+
+//Using command line arguments
+int main(int argc, char *argv[]) {
+	printf("%s", argv[1]);
+	
     char content[MAX_LINES][MAX_LENGTH];
     char finishedMadlib[MAX_LINES][MAX_LENGTH];
     int lineCount = 0;
 
-    printf("Enter the filename: ");
-    fgets(filename, MAX_LENGTH, stdin);
-
-    for (int i = 0; filename[i]; i++) {
-        if (filename[i] == '\n') {
-            filename[i] = '\0';
-            break;
-        }
-    }
-
-    readFileContent(filename, content, &lineCount);
+    readFileContent(argv[1], content, &lineCount);
 	
     if (lineCount == 0) {
         printf("Try Again.\n");
@@ -47,10 +40,6 @@ int main() {
     return 0;
 }
 
-//Function opens the inputed file. Using a for loop, it iterates through all lines in
-//the txt file and converts the "\n" new line character to a NULL character.
-//Adds to the pointer lineCount to rpresent how many fille dliens there are in the
-//char array.
 void readFileContent(char *filename, char content[MAX_LINES][MAX_LENGTH], int *lineCount) {
     FILE *file = fopen(filename, "r");
     if (!file) {
@@ -106,6 +95,7 @@ void createMadlib(char content[MAX_LINES][MAX_LENGTH], int lineCount, char resul
     }
 }
 
+//Print final madlib!
 void displayResult(char result[MAX_LINES][MAX_LENGTH], int lineCount) {
     printf("Here's your final madlib!\n");
     for (int i = 0; i < lineCount; i++) {
@@ -122,6 +112,7 @@ void displayResult(char result[MAX_LINES][MAX_LENGTH], int lineCount) {
     }
     printf("\n");
 }
+
 
 void copy(char *goal, char *source) {
     while (*source) {
