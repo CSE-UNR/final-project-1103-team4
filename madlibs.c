@@ -18,9 +18,8 @@ void createMadlib(char content[MAX_LINES][MAX_LENGTH], int lineCount, char resul
 void displayResult(char result[MAX_LINES][MAX_LENGTH], int lineCount);
 void copy(char *goal, char *source);
 
-
 //Using command line arguments
-int main(int argc, char *argv[]) {
+int main(int argc, char *argv[]){
 	printf("%s", argv[1]);
 	
     char content[MAX_LINES][MAX_LENGTH];
@@ -40,7 +39,7 @@ int main(int argc, char *argv[]) {
     return 0;
 }
 
-void readFileContent(char *filename, char content[MAX_LINES][MAX_LENGTH], int *lineCount) {
+void readFileContent(char *filename, char content[MAX_LINES][MAX_LENGTH], int *lineCount){
     FILE *file = fopen(filename, "r");
     if (!file) {
         printf("Cannot open file '%s'.\n", filename);
@@ -59,7 +58,7 @@ void readFileContent(char *filename, char content[MAX_LINES][MAX_LENGTH], int *l
     fclose(file);
 }
 
-void userInput(char *message, char *inputStorage) {
+void userInput(char *message, char *inputStorage){
     printf("Please enter %s: ", message);
     fgets(inputStorage, MAX_LENGTH, stdin);
 
@@ -71,7 +70,7 @@ void userInput(char *message, char *inputStorage) {
     }
 }
 
-void createMadlib(char content[MAX_LINES][MAX_LENGTH], int lineCount, char result[MAX_LINES][MAX_LENGTH]) {
+void createMadlib(char content[MAX_LINES][MAX_LENGTH], int lineCount, char result[MAX_LINES][MAX_LENGTH]){
     for (int i = 0; i < lineCount; i++) {
         char input[MAX_LENGTH];
 
@@ -96,7 +95,7 @@ void createMadlib(char content[MAX_LINES][MAX_LENGTH], int lineCount, char resul
 }
 
 //Print final madlib!
-void displayResult(char result[MAX_LINES][MAX_LENGTH], int lineCount) {
+void displayResult(char result[MAX_LINES][MAX_LENGTH], int lineCount){
     printf(" ");
     printf("Here's your final madlib!\n");
     for (int i = 0; i < lineCount; i++) {
@@ -114,8 +113,7 @@ void displayResult(char result[MAX_LINES][MAX_LENGTH], int lineCount) {
     printf("\n");
 }
 
-
-void copy(char *goal, char *source) {
+void copy(char *goal, char *source){
     while (*source) {
         *goal++ = *source++;
     }
