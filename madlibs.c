@@ -2,7 +2,7 @@
 //Assignment: CS Final Project
 //Due Date: 12-10-2024
 
-//working code (missing: extra credit portion, still working on copy function) 
+//working code 
 #include <stdio.h>
 #include <stdbool.h>
 
@@ -18,37 +18,28 @@ void createMadlib(char content[MAX_LINES][MAX_LENGTH], int lineCount, char resul
 void displayResult(char result[MAX_LINES][MAX_LENGTH], int lineCount);
 void copy(char *goal, char *source);
 
+
+//Using command line arguments
 int main(int argc, char *argv[]) {
-    char filename[MAX_LENGTH];
+	printf("%s", argv[1]);
+	
     char content[MAX_LINES][MAX_LENGTH];
     char finishedMadlib[MAX_LINES][MAX_LENGTH];
     int lineCount = 0;
- 
-    
-    printf("Enter the filename: ");
-    fgets(filename, MAX_LENGTH, stdin);
 
-    for (int i = 0; filename[i]; i++) {
-        if (filename[i] == '\n') {
-            filename[i] = '\0';
-            break;
-        }
-    } 
-
-    readFileContent(filename, content, &lineCount);
-
+    readFileContent(argv[1], content, &lineCount);
+	
     if (lineCount == 0) {
         printf("Try Again.\n");
         return 1;
     }
-
+	
     createMadlib(content, lineCount, finishedMadlib);
     displayResult(finishedMadlib, lineCount);
-
+	
     return 0;
 }
 
-// 5 functions 
 void readFileContent(char *filename, char content[MAX_LINES][MAX_LENGTH], int *lineCount) {
     FILE *file = fopen(filename, "r");
     if (!file) {
@@ -56,7 +47,7 @@ void readFileContent(char *filename, char content[MAX_LINES][MAX_LENGTH], int *l
         return;
     }
 
-    while (fgets(content[*lineCount], MAX_LENGTH, file)) {
+	while (fgets(content[*lineCount], MAX_LENGTH, file)) {
         for (int i = 0; content[*lineCount][i]; i++) {
             if (content[*lineCount][i] == '\n') {
                 content[*lineCount][i] = '\0';
@@ -104,16 +95,25 @@ void createMadlib(char content[MAX_LINES][MAX_LENGTH], int lineCount, char resul
     }
 }
 
+//Print final madlib!
 void displayResult(char result[MAX_LINES][MAX_LENGTH], int lineCount) {
     printf(" ");
+    printf("Here's your final madlib!\n");
     for (int i = 0; i < lineCount; i++) {
         printf("%s", result[i]);
         if (i < lineCount - 1) {
-            printf(" ");
+            if (result[i+1][0] == '!' || result[i+1][0] == ',' ||
+            	result[i+1][0] == '.' || result[i+1][0] == '?' ||
+            	result[i+1][0] == '\"'){
+            	printf("");
+            }else{
+            	printf(" ");
+            }
         }
     }
     printf("\n");
 }
+
 
 void copy(char *goal, char *source) {
     while (*source) {
@@ -121,39 +121,3 @@ void copy(char *goal, char *source) {
     }
     *goal = '\0';
 }
-
-/*#include <stdio.h>
-#define FILENAME "madlib1.txt"
-#define STRARRLEN 200
-
-int main(){
-	FILE* fpt;
-	//word type pointers
-	
-	
-	//Creating file Pointer and checking if it opened
-	fpt = fopen(FILENAME, "r");
-	if (fpt = NULL){
-		printf("File did not open\n");
-		return 0;
-	}
-	
-	//function call
-	//2d Array creation (these can be passed through to other functions)
-	
-	//after array creation we then need to then recheck for all single letters.
-	//Each time we get one, an if statement will take that info, prompts user for input, gets					 					
-	//input, and puts it in its corresponding array (if we need extra functions im sure
-	//there is a workaround we could do).
-	
-	//second function call
-		
-	fclose(fpt);
-	return 0;
-}
-
-//function to count however many of each word type there are in the mad lib.
-//add to a counter which will be used to create the amount of columns for three 2D arrays
-//2d arrays will be created in main. counter variables will be pointers
-
-*/
